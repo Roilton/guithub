@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -263,3 +264,270 @@
 </html>
 
 
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,700;1,500&display=swap"
+        rel="stylesheet">
+
+    <title>MS1 - Conversor de moedas</title>
+   
+</head>
+
+<body>
+    <div id="cabecalho">
+        <h1> MS1 Conversor de moedas</h1>
+    </div>
+
+    <div id="segundo-texto">
+        <h3> Do Real para: Dolar e Euro</P>
+    </div>
+
+    <div id="caixa-principal">
+        <p class="paragrafo">Converter <b> de</b></p>
+
+        <select class="select">
+            <option>R$ Real Brasileiro </option>
+        </select>
+
+        <p class="paragrafo">Converter <b>Para </b></p>
+
+        <select class="select" id="select-moedas">
+            <option>US$ Dolar Americano</option>
+            <option>€ Euro </option>
+            
+        </select>
+
+        <p class="paragrafo"><b>Valor</b></p>
+        <input id="input" placeholder="R$ 10.000,00" type="number">
+
+        <button id="botao">Converter</button>
+
+        <div id="caixa-interna">
+            <div class="caixa-menor">
+                <img src="./img/brasil 2.png">
+                <p class="paragrafo" id="valor">Real</p>
+                <p class="paragrafo-negrito" id="texto-real">R$ 10.000,00</p>
+            </div>
+
+            <img id="seta" src="./img/seta.png">
+
+            <div class="caixa-menor">
+                <img id="bandeira-moedas" src="./img/estados unidos.png">
+                <p class="paragrafo" id="texto-moedas">Dolar Americano</p>
+                <p class="paragrafo-negrito" id="input-moedas">US$ 2000</p>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+</body>
+
+<style>
+    * {
+        font-family: 'Roboto', sans-serif;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #2c2c2c;
+    }
+
+    #cabecalho {
+        background: #9657A5;
+        height: 66px;
+        width: 375px;
+        left: 0px;
+        top: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 70px;
+    }
+    
+    h1 {
+
+        color: #f4f4f4;
+        font-size: 24px;
+        text-align: center;
+        padding: 20px;
+
+    }
+
+    h3 {
+        color: #f4f4f4;
+        font-size: 16px;
+        text-align: center;
+        margin-top: -20px;
+        
+    
+    }
+
+    #caixa-principal {
+        background: #E5E5E5;
+        width: 375px;
+        padding: 24px;
+        margin-left: auto;
+        margin-right: auto; 
+    }
+
+    .paragrafo {
+        margin-bottom: 6px;
+        width: 90px;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 18px;
+        
+    }
+    
+
+    .select {
+        background: #ffffff;
+        border: 1px solid #bbbbbb;
+        border-radius: 4px;
+        height: 48px;
+        width: 327px;
+        margin-bottom: 23px;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        padding-left: 16px;
+        font-size: 14px;
+
+
+    }
+
+    #input {
+        background: #ffffff;
+        height: 48px;
+        width: 327px;
+        border: 1px solid #bbbbbb;
+        border-radius: 4px;
+        margin-bottom: 23px;
+        outline: none;
+        padding-left: 16px;
+        ont-size: 16px;
+        font-weight: bold;
+    }
+
+    #botao {
+        background: #CDD728;
+        border-radius: 25px;
+        display: block;
+        height: 48px;
+        width: 327px;
+        cursor: pointer;
+        border: none;
+        margin-bottom: 23px;
+        font-weight: bold;
+        font-size: 18px;
+        color: #f4f4f4;
+
+    }
+
+    #caixa-interna {
+        border: 1px solid #9657a5;
+        border-radius: 4px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+     
+    }
+    
+    .caixa-menor {
+        text-align: center;
+    }
+    #valor {
+        margin-left: 117px;
+    }
+    #texto-moedas {
+        margin-left: 113px;
+    }
+    
+
+    #seta {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .paragrafo-negrito {
+        font-weight: bold;
+        font-size: 20px;
+
+    }
+</style>
+<script>
+
+    let botao = document.getElementById("botao")
+    let select = document.getElementById("select-moedas")
+
+    async function converterMoedas() {
+        let moedas = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL").then(function (resposta) {
+            return resposta.json()
+        })
+
+        let dolar = moedas.USDBRL.high
+        let euro = moedas.EURBRL.high
+
+        //o fetch vai no servidor e tras a informação aweit manda esperar e sempre usa colocar o async na função 
+        //Json é um formato do site da internete com lnumeros muito pequenos  
+        // https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL
+
+        let inputValorEmReais = Number(document.getElementById("input").value)
+        let inputMoedas = document.getElementById("input-moedas")
+        let textoReal = document.getElementById("texto-real")
+
+        if (select.value === "US$ Dolar Americano") {
+            let ValorEmDolares = inputValorEmReais / dolar
+            inputMoedas.innerHTML = ValorEmDolares.toLocaleString("en-US", { style: "currency", currency: "USD" })
+        }
+
+        if (select.value === "€ Euro") {
+            let valorEmEuros = inputValorEmReais / euro
+            inputMoedas.innerHTML = valorEmEuros.toLocaleString("de-DE", { style: "currency", currency: "EUR" })
+        }
+
+        textoReal.innerHTML = inputValorEmReais.toLocaleString("pt-br", { style: "currency", currency: "BRL"})
+
+        
+        textoReal.innerHTML = inputValorEmReais.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+    }
+
+    // essa função é responsavél por trocar as bandeiras e os nomes das moedas
+    function trocaDeMoedas() {
+        let textoMoedas = document.getElementById("texto-moedas")
+        let bandeiraMoedas = document.getElementById("bandeira-moedas")
+
+        if (select.value === "US$ Dolar Americano") {
+            textoMoedas.innerHTML = "Dolar Americano"
+            bandeiraMoedas.src = "./img/estados unidos.png"
+        }
+
+        if (select.value === "€ Euro") {
+            textoMoedas.innerHTML = "Euro"
+            bandeiraMoedas.src = "./img/euro.png"
+        }
+        converterMoedas()
+    }
+
+    botao.addEventListener("click", converterMoedas) // evento que ouve o clique do botão
+    select.addEventListener("change", trocaDeMoedas) // essa função estar ouvindo a troca dos valores
+
+</script>
+
+</html>
+
+
+>>>>>>> fd24d952a4045aa536dd976a9d56b61c3647fec0
